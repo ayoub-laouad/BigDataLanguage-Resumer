@@ -1,1 +1,0 @@
-# BigDataLanguage-Resumer
