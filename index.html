@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Technique M2SI - Scala, Spark & Kafka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            color: #2a5298;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f0f0f0;
+        }
+
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            display: block;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .inline-code {
+            background: #e8eaf6;
+            color: #1e3c72;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            display: inline;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+
+        .note {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+            margin: 15px 0;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Fiche Technique M2SI</h1>
+            <p>Scala, Spark & Kafka - Préparation Examen</p>
+        </div>
+
+        <div class="content">
+            <!-- Section 1: Fondamentaux Scala -->
+            <div class="section">
+                <h2>📘 1. Fondamentaux Scala</h2>
+                <table>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Syntaxe</th>
+                        <th>Note</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Variables</strong></td>
+                        <td><span class="inline-code">val x = 10</span> / <span class="inline-code">var y = 5</span></td>
+                        <td>Prioriser val (immuable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Boucles</strong></td>
+                        <td><span class="inline-code">for(i <- 1 to 5)</span></td>
+                        <td>until exclut la borne</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fonction</strong></td>
+                        <td><span class="inline-code">def nom(a: Int): Int</span></td>
+                        <td>Type de retour obligatoire</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Récursivité</strong></td>
+                        <td><span class="inline-code">if(n<=1) 1 else n*f(n-1)</span></td>
+                        <td>Toujours typer le retour</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Imports</strong></td>
+                        <td><span class="inline-code">import scala.collection._</span></td>
+                        <td>_ équivaut à * en Java</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Section 2: Collections -->
+            <div class="section">
+                <h2>📦 2. Collections & Structures</h2>
+                
+                <h3>Manipulation de Listes</h3>
+                <ul>
+                    <li><strong>Création:</strong> <span class="inline-code">val l = List(1, 2, 3)</span></li>
+                    <li><strong>Concaténation:</strong> <span class="inline-code">l1 ::: l2</span> ou <span class="inline-code">l1 ++ l2</span></li>
+                    <li><strong>Ajout:</strong> <span class="inline-code">0 :: l</span> (début)</li>
+                    <li><strong>Conversion:</strong> <span class="inline-code">myList.toSet</span>, <span class="inline-code">.toArray</span></li>
+                </ul>
+
+                <h3>Types Spéciaux</h3>
+                <div class="note">
+                    <strong>Option:</strong> Retourne <span class="inline-code">Some(v)</span> ou <span class="inline-code">None</span>
+                    <br><em>None hérite de Option[Nothing]</em>
+                </div>
+                
+                <div class="note">
+                    <strong>Either:</strong> Deux résultats possibles
+                    <ul>
+                        <li><span class="inline-code">Left(v)</span> → Erreur</li>
+                        <li><span class="inline-code">Right(v)</span> → Succès ("Right is Right")</li>
+                        <li>Accès: <span class="inline-code">res.getOrElse(default)</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3: POO -->
+            <div class="section">
+                <h2>🏛️ 3. POO et Logique</h2>
+                <ul>
+                    <li><strong>Instantiation:</strong> <span class="inline-code">val obj = new MaClasse(args)</span></li>
+                    <li><strong>Singleton:</strong> <span class="inline-code">object MonOutil { ... }</span> (pas de new)</li>
+                    <li><strong>Trait:</strong> <span class="inline-code">trait MonInterface { def test(): Unit }</span></li>
+                </ul>
+
+                <h3>Pattern Matching</h3>
+                <code>monObjet match {
+  case 1 => "Un"
+  case s: String => "Texte"
+  case _ => "Par défaut"
+}</code>
+            </div>
+
+            <!-- Section 4: Spark -->
+            <div class="section">
+                <h2>⚡ 4. Spark Core & SQL</h2>
+                
+                <h3>Initialisation Scala</h3>
+                <code>val spark = SparkSession.builder()
+  .appName("ExamenM2SI")
+  .master("local[*]")
+  .getOrCreate()</code>
+
+                <h3>Transformations vs Actions</h3>
+                <ul>
+                    <li><strong>Transformations (Lazy):</strong> map(), filter(), flatMap(), groupBy(), select()</li>
+                    <li><strong>Actions (Eager):</strong> show(), count(), collect(), save(), take(n)</li>
+                </ul>
+
+                <h3>Spark SQL</h3>
+                <code>df.createOrReplaceTempView("table_m2si")
+spark.sql("SELECT * FROM table_m2si WHERE age > 20")</code>
+            </div>
+
+            <!-- Section 5: Kafka (Full Width) -->
+            <div class="section full-width">
+                <h2>🌊 5. Kafka & Streaming</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h3>Architecture Kafka</h3>
+                        <ul>
+                            <li><strong>Producer:</strong> Envoie des messages</li>
+                            <li><strong>Consumer:</strong> Lit les messages</li>
+                            <li><strong>Broker:</strong> Serveur Kafka</li>
+                            <li><strong>Topic:</strong> Flux de données</li>
+                            <li><strong>Partition:</strong> Division pour parallélisme</li>
+                            <li><strong>Offset:</strong> Position du message</li>
+                            <li><strong>Zookeeper:</strong> Coordination cluster</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <strong>⚠️ Important:</strong> Kafka garantit l'ordre des messages <strong>uniquement dans une partition</strong>, pas sur tout le topic!
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Configuration Base</h3>
+                        <ul>
+                            <li><strong>Bootstrap Servers:</strong> localhost:9092</li>
+                            <li><strong>Subscribe:</strong> nom du topic</li>
+                            <li><strong>StartingOffsets:</strong> earliest ou latest</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Lecture Kafka (PySpark)</h3>
+                <code>df = spark.readStream \
+  .format("kafka") \
+  .option("kafka.bootstrap.servers", "localhost:9092") \
+  .option("subscribe", "mon_topic") \
+  .load()
+
+df_string = df.selectExpr("CAST(value AS STRING)")</code>
+
+                <h3>Lecture Kafka (Scala)</h3>
+                <code>val df = spark.readStream
+  .format("kafka")
+  .option("kafka.bootstrap.servers", "localhost:9092")
+  .option("subscribe", "mon_topic")
+  .load()
+
+val query = df.selectExpr("CAST(value AS STRING)")</code>
+
+                <h3>Écriture Console (Débugging)</h3>
+                <code>query = df.writeStream \
+  .outputMode("append") \
+  .format("console") \
+  .start()
+
+query.awaitTermination()</code>
+            </div>
+
+            <!-- Section 6: Comparaison -->
+            <div class="section full-width">
+                <h2>💡 Comparaison Scala vs PySpark</h2>
+                <table>
+                    <tr>
+                        <th>Action</th>
+                        <th>Syntaxe Scala</th>
+                        <th>Syntaxe PySpark</th>
+                    </tr>
+                    <tr>
+                        <td>Variable</td>
+                        <td><span class="inline-code">val x = 10</span></td>
+                        <td><span class="inline-code">x = 10</span></td>
+                    </tr>
+                    <tr>
+                        <td>Filtrage</td>
+                        <td><span class="inline-code">df.filter($"age" > 18)</span></td>
+                        <td><span class="inline-code">df.filter(df.age > 18)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Affichage</td>
+                        <td><span class="inline-code">df.show()</span></td>
+                        <td><span class="inline-code">df.show()</span></td>
+                    </tr>
+                    <tr>
+                        <td>Type Vide</td>
+                        <td><span class="inline-code">None / Unit</span></td>
+                        <td><span class="inline-code">None</span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Section 7: Rappels Finaux -->
+            <div class="section full-width">
+                <h2>📝 Rappels Finaux pour l'Examen</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                    <div class="highlight">
+                        <strong>Exception:</strong><br>
+                        <span class="inline-code">try { ... } catch { case e: Exception => ... }</span>
+                    </div>
+                    <div class="highlight">
+                        <strong>Iterate Map:</strong><br>
+                        <span class="inline-code">map.foreach { case (k, v) => println(s"$k -> $v") }</span>
+                    </div>
+                    <div class="highlight">
+                        <strong>Hadoop Windows:</strong><br>
+                        HADOOP_HOME et winutils.exe obligatoires pour Spark
+                    </div>
+                </div>
+
+                <h3>Questions Types Kafka</h3>
+                <div class="note">
+                    <ol>
+                        <li><strong>Pourquoi utiliser des partitions?</strong> → Scalabilité et parallélisme</li>
+                        <li><strong>Qu'est-ce qu'un Offset?</strong> → Position d'un message dans une partition</li>
+                        <li><strong>Différence read vs readStream?</strong> → Batch vs Streaming temps réel</li>
+                        <li><strong>Rôle du Leader?</strong> → Broker qui gère lectures/écritures d'une partition</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
